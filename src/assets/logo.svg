@@ -1,0 +1,12 @@
+<svg width="180" height="60" viewBox="0 0 180 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- GGP Text Logo - styled like Zavaya branding -->
+  <text x="0" y="42" font-family="Georgia, serif" font-size="36" font-weight="400" fill="#166534">
+    Global Gate
+  </text>
+  <text x="135" y="42" font-family="Georgia, serif" font-size="36" font-weight="400" fill="#f97316">
+    •
+  </text>
+  <!-- Leaf accent -->
+  <path d="M165 18 C170 12, 178 14, 175 22 C172 28, 165 26, 165 18 Z" fill="#166534"/>
+  <path d="M168 20 L172 24" stroke="#166534" stroke-width="1"/>
+</svg>
