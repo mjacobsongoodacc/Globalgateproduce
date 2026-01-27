@@ -2,7 +2,7 @@
  * Quality & Certifications Section
  * 
  * Shows certification badges and quality commitment.
- * No images to avoid loading issues.
+ * Updated with new brand styling.
  */
 
 import {
@@ -12,6 +12,7 @@ import {
   Text,
   VStack,
   SimpleGrid,
+  HStack,
 } from '@chakra-ui/react'
 
 // Import reveal hook
@@ -19,27 +20,30 @@ import { useReveal, useStaggerReveal } from '../hooks/useReveal'
 
 // Certifications list
 const CERTIFICATIONS = [
-  { id: 'usda', label: 'USDA Approved' },
+  { id: 'usda', label: 'USDA' },
   { id: 'globalgap', label: 'GlobalGAP' },
   { id: 'senasica', label: 'SENASICA' },
   { id: 'haccp', label: 'HACCP' },
-  { id: 'organic', label: 'Organic Options' },
-  { id: 'fsma', label: 'FSMA Compliant' },
+  { id: 'organic', label: 'Organic' },
+  { id: 'fsma', label: 'FSMA' },
 ]
 
 // Quality pillars
 const QUALITY_PILLARS = [
   {
-    title: 'Field visits',
+    title: 'Field Visits',
     description: "We inspect partner farms regularly. If something's off, we catch it early.",
+    icon: '🌱',
   },
   {
-    title: 'Temperature logs',
+    title: 'Temperature Logs',
     description: 'Continuous monitoring from packhouse to your receiving dock.',
+    icon: '❄️',
   },
   {
-    title: 'Full traceability',
+    title: 'Full Traceability',
     description: 'Every box tracked back to the orchard it came from.',
+    icon: '📦',
   },
 ]
 
@@ -54,25 +58,51 @@ function Quality() {
       as="section"
       id="quality"
       py={{ base: 16, md: 24 }}
-      bg="brand.700"
+      bg="brand.800"
       color="white"
+      position="relative"
+      overflow="hidden"
     >
-      <Container maxW="1200px" px={{ base: 4, md: 8 }}>
+      {/* Decorative pattern */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        opacity="0.03"
+        bgImage="url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c0 0 10 10 10 20s-10 15-20 5c0 0 5-10 10-20z' fill='%23ffffff'/%3E%3C/svg%3E\")"
+        bgRepeat="repeat"
+      />
+      
+      <Container maxW="1200px" px={{ base: 4, md: 8 }} position="relative">
         {/* Header - left aligned */}
         <Box ref={headerRef} className="reveal" mb={{ base: 10, md: 14 }} maxW="550px">
+          <Text
+            fontSize="sm"
+            fontWeight="600"
+            color="accent.produce"
+            textTransform="uppercase"
+            letterSpacing="0.15em"
+            mb={3}
+          >
+            Quality Assurance
+          </Text>
           <Heading
             as="h2"
-            fontSize={{ base: '2xl', md: '3xl' }}
+            fontSize={{ base: '3xl', md: '4xl' }}
+            fontFamily="'Bebas Neue', 'Oswald', sans-serif"
             fontWeight="400"
             color="white"
             mb={4}
+            letterSpacing="0.02em"
           >
-            The paperwork is handled
+            THE PAPERWORK IS HANDLED
           </Heading>
           
           <Text
             fontSize="md"
-            color="brand.200"
+            color="whiteAlpha.800"
             lineHeight="1.7"
           >
             Phyto certificates, USDA/APHIS clearance, certificates of origin—we 
@@ -81,7 +111,7 @@ function Quality() {
         </Box>
 
         {/* Quality Pillars */}
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8} mb={12}>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} mb={12}>
           {QUALITY_PILLARS.map((pillar, index) => (
             <VStack
               key={pillar.title}
@@ -89,11 +119,21 @@ function Quality() {
               className="reveal"
               align="flex-start"
               p={6}
-              bg="whiteAlpha.100"
-              borderRadius="4px"
+              bg="whiteAlpha.50"
+              borderLeft="3px solid"
+              borderColor="accent.produce"
+              _hover={{ bg: 'whiteAlpha.100' }}
+              transition="background 0.2s"
             >
-              <Text fontWeight="600" color="white" fontSize="lg">
-                {pillar.title}
+              <Text fontSize="2xl" mb={2}>{pillar.icon}</Text>
+              <Text 
+                fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                fontWeight="400" 
+                color="white" 
+                fontSize="xl"
+                letterSpacing="0.05em"
+              >
+                {pillar.title.toUpperCase()}
               </Text>
               <Text fontSize="sm" color="whiteAlpha.700" lineHeight="1.7">
                 {pillar.description}
@@ -102,15 +142,40 @@ function Quality() {
           ))}
         </SimpleGrid>
 
-        {/* Certification list - centered */}
-        <Box ref={certsRef} className="reveal" textAlign="center">
-          <Text 
-            fontSize="sm" 
-            color="brand.200"
-            letterSpacing="0.02em"
+        {/* Certification badges */}
+        <Box 
+          ref={certsRef} 
+          className="reveal" 
+          py={8}
+          borderTop="1px solid"
+          borderColor="whiteAlpha.200"
+        >
+          <HStack 
+            spacing={{ base: 4, md: 8 }} 
+            justify="center"
+            flexWrap="wrap"
+            gap={4}
           >
-            USDA · GlobalGAP · SENASICA · HACCP · FSMA compliant · Organic options available
-          </Text>
+            {CERTIFICATIONS.map((cert) => (
+              <Box
+                key={cert.id}
+                px={4}
+                py={2}
+                border="1px solid"
+                borderColor="whiteAlpha.300"
+                bg="whiteAlpha.50"
+              >
+                <Text 
+                  fontSize="xs" 
+                  fontWeight="600"
+                  color="white"
+                  letterSpacing="0.1em"
+                >
+                  {cert.label}
+                </Text>
+              </Box>
+            ))}
+          </HStack>
         </Box>
       </Container>
     </Box>

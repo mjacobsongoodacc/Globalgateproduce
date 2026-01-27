@@ -2,6 +2,7 @@
  * Footer Component
  * 
  * Footer with Global Gate Produce logo, nav links, and contact info.
+ * Updated with new brand styling.
  */
 
 import {
@@ -14,24 +15,41 @@ import {
   Heading,
 } from '@chakra-ui/react'
 
+// Import logo component
+import { Logo } from './Logo'
+
 // Tagline banner above footer
 export function Tagline() {
   return (
     <Box
-      py={{ base: 12, md: 16 }}
-      bg="brand.700"
+      py={{ base: 16, md: 20 }}
+      bg="brand.800"
+      position="relative"
+      overflow="hidden"
     >
-      <Container maxW="1200px" px={{ base: 4, md: 8 }}>
+      {/* Decorative leaf pattern */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        opacity="0.05"
+        bgImage="url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c0 0 10 10 10 20s-10 15-20 5c0 0 5-10 10-20z' fill='%23ffffff'/%3E%3C/svg%3E\")"
+        bgRepeat="repeat"
+      />
+      <Container maxW="1200px" px={{ base: 4, md: 8 }} position="relative">
         <Heading
           as="p"
           textAlign="center"
-          fontSize={{ base: '2xl', md: '4xl', lg: '5xl' }}
+          fontSize={{ base: '3xl', md: '5xl', lg: '6xl' }}
+          fontFamily="'Bebas Neue', 'Oswald', sans-serif"
           fontWeight="400"
-          fontStyle="italic"
           color="white"
-          letterSpacing="0.02em"
+          letterSpacing="0.05em"
         >
-          Taste the rare, taste exotic from Mexico
+          TASTE THE RARE, TASTE EXOTIC
+          <Text as="span" color="accent.produce"> FROM MEXICO</Text>
         </Heading>
       </Container>
     </Box>
@@ -53,7 +71,7 @@ function Footer() {
     <Box
       as="footer"
       py={{ base: 12, md: 16 }}
-      bg="neutral.charcoal"
+      bg="brand.900"
       color="white"
     >
       <Container maxW="1200px" px={{ base: 4, md: 8 }}>
@@ -66,18 +84,9 @@ function Footer() {
           {/* Company Info with Logo */}
           <VStack align="flex-start" spacing={4} maxW="300px">
             {/* Global Gate Produce Logo */}
-            <Text
-              fontSize="xl"
-              fontFamily="Georgia, 'Times New Roman', serif"
-              fontWeight="400"
-              color="white"
-              letterSpacing="-0.02em"
-            >
-              Global Gate
-              <Text as="span" color="accent.orange"> Produce</Text>
-            </Text>
+            <Logo variant="white" size="md" />
             
-            <Text fontSize="sm" color="whiteAlpha.700" lineHeight="1.7">
+            <Text fontSize="sm" color="whiteAlpha.700" lineHeight="1.7" pt={2}>
               Avocados, dragon fruit, and tropicals from Mexico. 
               Women-owned, Rio Grande Valley–based.
             </Text>
@@ -85,8 +94,14 @@ function Footer() {
 
           {/* Navigation Links */}
           <VStack align="flex-start" spacing={3}>
-            <Text fontSize="sm" fontWeight="500" color="white" mb={1}>
-              Quick Links
+            <Text 
+              fontSize="sm" 
+              fontWeight="600" 
+              color="accent.produce" 
+              mb={1}
+              letterSpacing="0.05em"
+            >
+              QUICK LINKS
             </Text>
             {FOOTER_LINKS.map((link) => (
               <Link
@@ -104,8 +119,14 @@ function Footer() {
 
           {/* Contact Info */}
           <VStack align="flex-start" spacing={3}>
-            <Text fontSize="sm" fontWeight="500" color="white" mb={1}>
-              Contact Us
+            <Text 
+              fontSize="sm" 
+              fontWeight="600" 
+              color="accent.produce" 
+              mb={1}
+              letterSpacing="0.05em"
+            >
+              CONTACT US
             </Text>
             <Link
               href="mailto:sales@globalgateproduce.com"

@@ -1,57 +1,55 @@
 /**
  * Global Gate Produce - Theme Configuration
  * 
- * Brand Colors (from Zavaya palette):
- * - Primary Dark Green: #166534
- * - Light Green/Mint: #4ade80 / #5eead4
- * - Orange: #f97316
- * - Yellow: #facc15
- * - Magenta/Pink: #db2777
+ * Brand Colors (from official logo):
+ * - Primary Dark Green: #0d2818 (deep forest green from logo background)
+ * - Leaf Green: #4a7c59 (the leaf accent)
+ * - Light Produce Green: #7cb342 (for "PRODUCE" text)
+ * - White: #ffffff (logo text)
  * 
- * TO ADJUST COLORS:
- * Edit the hex values below. The number scale (50-900) goes from 
- * lightest to darkest. brand.700 is used as the primary accent.
+ * Typography: Bold, modern sans-serif matching the logo
  */
 
 import { extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
-  // Fonts - Karla for body (warm, organic feel), Georgia for headings
+  // Fonts - Bold modern sans-serif like the logo
   fonts: {
-    heading: `'Georgia', 'Times New Roman', serif`,
-    body: `'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`,
+    heading: `'Bebas Neue', 'Oswald', 'Impact', sans-serif`,
+    body: `'Work Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif`,
+    logo: `'Bebas Neue', 'Oswald', 'Impact', sans-serif`,
   },
   
   colors: {
-    // Primary brand green - the main color
+    // Primary brand green - deep forest green from logo
     brand: {
-      50: '#f0fdf4',
-      100: '#dcfce7',
-      200: '#bbf7d0',
-      300: '#86efac',
-      400: '#4ade80',   // Light mint green
-      500: '#22c55e',
-      600: '#16a34a',
-      700: '#166534',   // PRIMARY - Dark avocado green
-      800: '#14532d',
-      900: '#052e16',
+      50: '#e8f5e9',
+      100: '#c8e6c9',
+      200: '#a5d6a7',
+      300: '#81c784',
+      400: '#66bb6a',
+      500: '#4caf50',
+      600: '#2e7d32',
+      700: '#1b4d3e',   // Slightly lighter for hover states
+      800: '#0d2818',   // PRIMARY - Deep forest green from logo
+      900: '#071810',   // Darker shade
     },
     
-    // Accent colors for highlights and variety
+    // Accent colors for highlights
     accent: {
-      orange: '#f97316',    // Orange from palette
-      yellow: '#facc15',    // Yellow from palette  
-      magenta: '#db2777',   // Pink/magenta from palette
-      mint: '#4ade80',      // Light green
-      teal: '#5eead4',      // Teal accent
+      leaf: '#4a7c59',       // The leaf green
+      produce: '#7cb342',    // Light green for "PRODUCE"
+      lime: '#8bc34a',       // Bright lime accent
+      white: '#ffffff',      // Clean white
+      cream: '#f5f5f0',      // Off-white for backgrounds
     },
     
     // Neutral tones for backgrounds and text
     neutral: {
-      offwhite: '#fafaf9',  // Page background
-      cream: '#f5f5f4',     // Section backgrounds
-      stone: '#78716c',     // Secondary text
-      charcoal: '#1c1917',  // Primary text (near-black)
+      offwhite: '#fafaf8',   // Page background
+      cream: '#f5f5f0',      // Section backgrounds
+      stone: '#5a5a5a',      // Secondary text
+      charcoal: '#1a1a1a',   // Primary text (near-black)
     }
   },
   
@@ -63,6 +61,10 @@ const theme = extendTheme({
         color: 'neutral.charcoal',
         lineHeight: '1.6',
       },
+      // Import fonts
+      '@import': [
+        "url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap')",
+      ],
     },
   },
   
@@ -70,17 +72,18 @@ const theme = extendTheme({
   components: {
     Button: {
       baseStyle: {
-        fontWeight: '500',
-        borderRadius: '2px',  // Sharp corners for minimal look
+        fontWeight: '600',
+        borderRadius: '2px',
+        letterSpacing: '0.02em',
         transition: 'all 0.2s',
       },
       variants: {
-        // Primary button - dark green background
+        // Primary button - deep forest green background
         primary: {
-          bg: 'brand.700',
+          bg: 'brand.800',
           color: 'white',
           _hover: {
-            bg: 'brand.800',
+            bg: 'brand.700',
             transform: 'translateY(-1px)',
           },
           _active: {
@@ -90,11 +93,21 @@ const theme = extendTheme({
         // Secondary button - outline style
         secondary: {
           bg: 'transparent',
-          color: 'brand.700',
-          border: '1px solid',
-          borderColor: 'brand.700',
+          color: 'brand.800',
+          border: '2px solid',
+          borderColor: 'brand.800',
           _hover: {
-            bg: 'brand.50',
+            bg: 'brand.800',
+            color: 'white',
+          },
+        },
+        // Light variant for dark backgrounds
+        light: {
+          bg: 'white',
+          color: 'brand.800',
+          _hover: {
+            bg: 'accent.cream',
+            transform: 'translateY(-1px)',
           },
         },
       },
@@ -105,21 +118,21 @@ const theme = extendTheme({
     
     Heading: {
       baseStyle: {
-        fontWeight: '400',  // Light weight for elegant look
+        fontWeight: '400',
         color: 'neutral.charcoal',
-        letterSpacing: '-0.02em',
+        letterSpacing: '0.02em',
       },
     },
     
     Input: {
       defaultProps: {
-        focusBorderColor: 'brand.700',
+        focusBorderColor: 'brand.800',
       },
     },
     
     Textarea: {
       defaultProps: {
-        focusBorderColor: 'brand.700',
+        focusBorderColor: 'brand.800',
       },
     },
   },

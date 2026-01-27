@@ -2,17 +2,13 @@
  * Contact Form Section
  * 
  * Contact form with name, email, company, and message fields.
+ * Updated with new brand styling.
  * 
  * TO ADD FORM SUBMISSION:
  * Replace the handleSubmit function with your preferred method:
  * - Email service (EmailJS, Formspree, etc.)
  * - API endpoint
  * - CRM integration
- * 
- * Example with Formspree (free tier available):
- * 1. Sign up at formspree.io
- * 2. Create a form, get your form ID
- * 3. Replace the fetch URL with: https://formspree.io/f/YOUR_FORM_ID
  */
 
 import { useState } from 'react'
@@ -70,25 +66,9 @@ function ContactForm() {
       // REPLACE THIS SECTION WITH YOUR FORM HANDLER
       // ============================================
       
-      // Option 1: Formspree (recommended for simple setup)
-      // const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
-      // if (!response.ok) throw new Error('Form submission failed')
-
-      // Option 2: Your own API endpoint
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
-      // if (!response.ok) throw new Error('Form submission failed')
-
       // Current: Just log and simulate success (for demo)
       console.log('Form submitted:', formData)
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 1000))
       
       // ============================================
       // END REPLACEMENT SECTION
@@ -124,12 +104,24 @@ function ContactForm() {
             spacing={5}
             flex="1"
           >
+            <Text
+              fontSize="sm"
+              fontWeight="600"
+              color="accent.leaf"
+              textTransform="uppercase"
+              letterSpacing="0.15em"
+            >
+              Get In Touch
+            </Text>
             <Heading
               as="h2"
-              fontSize={{ base: '2xl', md: '3xl' }}
+              fontSize={{ base: '3xl', md: '4xl' }}
+              fontFamily="'Bebas Neue', 'Oswald', sans-serif"
               fontWeight="400"
+              letterSpacing="0.02em"
+              color="brand.800"
             >
-              Talk to us
+              TALK TO US
             </Heading>
             
             <Text
@@ -143,7 +135,7 @@ function ContactForm() {
             </Text>
 
             {/* Contact Info */}
-            <VStack align="flex-start" spacing={4} pt={4}>
+            <VStack align="flex-start" spacing={6} pt={4}>
               <HStack spacing={4} align="flex-start">
                 <Image
                   src={marieLealImg}
@@ -152,16 +144,23 @@ function ContactForm() {
                   objectFit="cover"
                   objectPosition="center 20%"
                   borderRadius="full"
-                  border="2px solid"
-                  borderColor="brand.700"
+                  border="3px solid"
+                  borderColor="brand.800"
                 />
-                <HStack spacing={8} align="flex-start">
+                <HStack spacing={8} align="flex-start" flexWrap="wrap">
                   <Box>
-                    <Text fontSize="sm" fontWeight="600" color="neutral.charcoal" mb={1}>
-                      Mariel Leal
+                    <Text 
+                      fontSize="sm" 
+                      fontWeight="700" 
+                      color="brand.800" 
+                      mb={1}
+                      fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                      letterSpacing="0.05em"
+                    >
+                      MARIEL LEAL
                     </Text>
-                    <Text fontSize="xs" color="brand.700" fontWeight="500" mb={1}>
-                      Sales Manager
+                    <Text fontSize="xs" color="accent.leaf" fontWeight="600" mb={1} letterSpacing="0.05em">
+                      SALES MANAGER
                     </Text>
                     <Text fontSize="sm" color="neutral.stone">
                       +1 956 651 1021
@@ -171,11 +170,18 @@ function ContactForm() {
                     </Text>
                   </Box>
                   <Box>
-                    <Text fontSize="sm" fontWeight="600" color="neutral.charcoal" mb={1}>
-                      Sara Torres
+                    <Text 
+                      fontSize="sm" 
+                      fontWeight="700" 
+                      color="brand.800" 
+                      mb={1}
+                      fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                      letterSpacing="0.05em"
+                    >
+                      SARA TORRES
                     </Text>
-                    <Text fontSize="xs" color="brand.700" fontWeight="500" mb={1}>
-                      Finance / CEO
+                    <Text fontSize="xs" color="accent.leaf" fontWeight="600" mb={1} letterSpacing="0.05em">
+                      FINANCE / CEO
                     </Text>
                     <Text fontSize="sm" color="neutral.stone">
                       +1 210 289 6663
@@ -188,8 +194,15 @@ function ContactForm() {
               </HStack>
 
               <Box>
-                <Text fontSize="sm" fontWeight="600" color="neutral.charcoal" mb={1}>
-                  Location
+                <Text 
+                  fontSize="sm" 
+                  fontWeight="700" 
+                  color="brand.800" 
+                  mb={1}
+                  fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                  letterSpacing="0.05em"
+                >
+                  LOCATION
                 </Text>
                 <Text fontSize="sm" color="neutral.stone">
                   Rio Grande Valley, Texas
@@ -205,14 +218,15 @@ function ContactForm() {
               onSubmit={handleSubmit}
               bg="white"
               p={{ base: 6, md: 8 }}
-              borderTop="3px solid"
-              borderColor="brand.700"
+              borderTop="4px solid"
+              borderColor="brand.800"
+              boxShadow="0 4px 20px rgba(0,0,0,0.08)"
             >
               <VStack spacing={5}>
                 {/* Success/Error Messages */}
                 {submitStatus === 'success' && (
-                  <Alert status="success" borderRadius="2px">
-                    <AlertIcon />
+                  <Alert status="success" borderRadius="2px" bg="accent.leaf" color="white">
+                    <AlertIcon color="white" />
                     Thank you! We'll be in touch within 24 hours.
                   </Alert>
                 )}
@@ -224,7 +238,13 @@ function ContactForm() {
                 )}
 
                 <FormControl isRequired>
-                  <FormLabel fontSize="sm" fontWeight="500" color="neutral.charcoal">
+                  <FormLabel 
+                    fontSize="xs" 
+                    fontWeight="600" 
+                    color="brand.800"
+                    textTransform="uppercase"
+                    letterSpacing="0.1em"
+                  >
                     Name
                   </FormLabel>
                   <Input
@@ -236,12 +256,18 @@ function ContactForm() {
                     borderRadius="2px"
                     borderColor="gray.200"
                     _hover={{ borderColor: 'gray.300' }}
-                    _focus={{ borderColor: 'brand.700', boxShadow: 'none' }}
+                    _focus={{ borderColor: 'brand.800', boxShadow: 'none' }}
                   />
                 </FormControl>
 
                 <FormControl isRequired>
-                  <FormLabel fontSize="sm" fontWeight="500" color="neutral.charcoal">
+                  <FormLabel 
+                    fontSize="xs" 
+                    fontWeight="600" 
+                    color="brand.800"
+                    textTransform="uppercase"
+                    letterSpacing="0.1em"
+                  >
                     Email
                   </FormLabel>
                   <Input
@@ -254,12 +280,18 @@ function ContactForm() {
                     borderRadius="2px"
                     borderColor="gray.200"
                     _hover={{ borderColor: 'gray.300' }}
-                    _focus={{ borderColor: 'brand.700', boxShadow: 'none' }}
+                    _focus={{ borderColor: 'brand.800', boxShadow: 'none' }}
                   />
                 </FormControl>
 
                 <FormControl>
-                  <FormLabel fontSize="sm" fontWeight="500" color="neutral.charcoal">
+                  <FormLabel 
+                    fontSize="xs" 
+                    fontWeight="600" 
+                    color="brand.800"
+                    textTransform="uppercase"
+                    letterSpacing="0.1em"
+                  >
                     Company
                   </FormLabel>
                   <Input
@@ -271,12 +303,18 @@ function ContactForm() {
                     borderRadius="2px"
                     borderColor="gray.200"
                     _hover={{ borderColor: 'gray.300' }}
-                    _focus={{ borderColor: 'brand.700', boxShadow: 'none' }}
+                    _focus={{ borderColor: 'brand.800', boxShadow: 'none' }}
                   />
                 </FormControl>
 
                 <FormControl isRequired>
-                  <FormLabel fontSize="sm" fontWeight="500" color="neutral.charcoal">
+                  <FormLabel 
+                    fontSize="xs" 
+                    fontWeight="600" 
+                    color="brand.800"
+                    textTransform="uppercase"
+                    letterSpacing="0.1em"
+                  >
                     Message
                   </FormLabel>
                   <Textarea
@@ -289,7 +327,7 @@ function ContactForm() {
                     borderRadius="2px"
                     borderColor="gray.200"
                     _hover={{ borderColor: 'gray.300' }}
-                    _focus={{ borderColor: 'brand.700', boxShadow: 'none' }}
+                    _focus={{ borderColor: 'brand.800', boxShadow: 'none' }}
                   />
                 </FormControl>
 
@@ -300,12 +338,18 @@ function ContactForm() {
                   w="100%"
                   isLoading={isSubmitting}
                   loadingText="Sending..."
+                  fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                  fontSize="lg"
+                  letterSpacing="0.1em"
                 >
-                  Send Message
+                  SEND MESSAGE
                 </Button>
 
                 <Text fontSize="xs" color="neutral.stone" textAlign="center">
-                  Or email us directly at sales@globalgateproduce.com
+                  Or email us directly at{' '}
+                  <Text as="a" href="mailto:sales@globalgateproduce.com" color="brand.800" fontWeight="600">
+                    sales@globalgateproduce.com
+                  </Text>
                 </Text>
               </VStack>
             </Box>

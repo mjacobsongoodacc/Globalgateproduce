@@ -2,6 +2,7 @@
  * Header Component
  * 
  * Fixed navigation with Global Gate Produce logo and nav links.
+ * Updated with new brand styling.
  */
 
 import {
@@ -19,6 +20,9 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
+
+// Import logo component
+import { LogoHorizontal } from './Logo'
 
 // Simple hamburger icon for mobile
 const MenuIcon = () => (
@@ -52,32 +56,14 @@ function Header() {
       top="0"
       left="0"
       right="0"
-      bg="white"
-      borderBottom="1px solid"
-      borderColor="gray.100"
+      bg="brand.800"
       zIndex="100"
     >
       <Container maxW="1200px" px={{ base: 4, md: 8 }}>
         <Flex h="72px" align="center" justify="space-between">
           
           {/* Global Gate Produce Logo */}
-          <Box 
-            as="a" 
-            href="/" 
-            _hover={{ opacity: 0.8 }} 
-            transition="opacity 0.2s"
-          >
-            <Text
-              fontSize={{ base: 'lg', md: 'xl' }}
-              fontFamily="Georgia, 'Times New Roman', serif"
-              fontWeight="400"
-              color="brand.700"
-              letterSpacing="-0.02em"
-            >
-              Global Gate
-              <Text as="span" color="accent.orange"> Produce</Text>
-            </Text>
-          </Box>
+          <LogoHorizontal variant="dark" size="sm" showTagline />
 
           {/* Desktop Navigation */}
           <HStack spacing={8} display={{ base: 'none', md: 'flex' }}>
@@ -88,22 +74,23 @@ function Header() {
                 href={link.href}
                 fontSize="sm"
                 fontWeight="500"
-                color="neutral.stone"
-                _hover={{ color: 'brand.700' }}
+                color="whiteAlpha.800"
+                _hover={{ color: 'white' }}
                 transition="color 0.2s"
+                letterSpacing="0.02em"
               >
                 {link.label}
               </Text>
             ))}
-<Button
-                variant="primary"
-                size="sm"
-                px={6}
-                as="a"
-                href="#contact"
-              >
-                Get Pricing
-              </Button>
+            <Button
+              variant="light"
+              size="sm"
+              px={6}
+              as="a"
+              href="#contact"
+            >
+              Get Pricing
+            </Button>
           </HStack>
 
           {/* Mobile Menu Button */}
@@ -112,19 +99,22 @@ function Header() {
             aria-label="Open menu"
             icon={<MenuIcon />}
             variant="ghost"
-            color="brand.700"
+            color="white"
+            _hover={{ bg: 'whiteAlpha.100' }}
             onClick={onOpen}
           />
 
           {/* Mobile Drawer */}
           <Drawer isOpen={isOpen} onClose={onClose} placement="right">
             <DrawerOverlay />
-            <DrawerContent bg="white">
+            <DrawerContent bg="brand.800">
               <Flex justify="flex-end" p={4}>
                 <IconButton
                   aria-label="Close menu"
                   icon={<CloseIcon />}
                   variant="ghost"
+                  color="white"
+                  _hover={{ bg: 'whiteAlpha.100' }}
                   onClick={onClose}
                 />
               </Flex>
@@ -137,15 +127,16 @@ function Header() {
                       href={link.href}
                       fontSize="lg"
                       fontWeight="500"
-                      color="neutral.charcoal"
+                      color="white"
                       onClick={onClose}
-                      _hover={{ color: 'brand.700' }}
+                      _hover={{ color: 'accent.produce' }}
+                      letterSpacing="0.02em"
                     >
                       {link.label}
                     </Text>
                   ))}
                   <Button
-                    variant="primary"
+                    variant="light"
                     size="lg"
                     as="a"
                     href="#contact"

@@ -2,7 +2,7 @@
  * Product Focus Section
  * 
  * Highlights key products with real photos and specifications.
- * Uses web-sourced avocado image and local dragon fruit photos.
+ * Updated with new brand styling.
  */
 
 import {
@@ -39,7 +39,7 @@ const PRODUCTS = [
       { label: 'Pack', value: '10kg / 25lb boxes' },
       { label: 'Season', value: 'Year-round' },
     ],
-    color: 'brand.700',
+    color: 'brand.800',
     imageUrl: AVOCADO_IMAGE_URL,
     imageAlt: 'Fresh Hass avocados',
   },
@@ -53,7 +53,7 @@ const PRODUCTS = [
       { label: 'Pack', value: '5kg clamshells, 10lb boxes' },
       { label: 'Season', value: 'May–Nov peak' },
     ],
-    color: 'accent.magenta',
+    color: '#c2185b',
     image: dragonfruitRedImg,
     imageAlt: 'Red dragon fruit in packaging',
   },
@@ -67,7 +67,7 @@ const PRODUCTS = [
       { label: 'Pack', value: '5kg clamshells' },
       { label: 'Season', value: 'Limited' },
     ],
-    color: 'accent.yellow',
+    color: 'accent.produce',
     image: dragonfruitYellowImg,
     imageAlt: 'Yellow dragon fruit',
   },
@@ -102,13 +102,26 @@ function ProductFocus() {
       <Container maxW="1200px" px={{ base: 4, md: 8 }}>
         {/* Section Header */}
         <Box ref={headerRef} className="reveal" mb={{ base: 10, md: 14 }} maxW="500px">
-          <Heading
-            as="h2"
-            fontSize={{ base: '2xl', md: '3xl' }}
-            fontWeight="400"
+          <Text
+            fontSize="sm"
+            fontWeight="600"
+            color="accent.leaf"
+            textTransform="uppercase"
+            letterSpacing="0.15em"
             mb={3}
           >
-            What we ship
+            Our Products
+          </Text>
+          <Heading
+            as="h2"
+            fontSize={{ base: '3xl', md: '4xl' }}
+            fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+            fontWeight="400"
+            mb={3}
+            letterSpacing="0.02em"
+            color="brand.800"
+          >
+            WHAT WE SHIP
           </Heading>
           <Text fontSize="md" color="neutral.stone" lineHeight="1.7">
             Our main lines, plus seasonal and specialty items by request.
@@ -128,7 +141,6 @@ function ProductFocus() {
               {/* Product Image */}
               <Box
                 h="220px"
-                bg={product.color}
                 position="relative"
                 overflow="hidden"
               >
@@ -141,6 +153,15 @@ function ProductFocus() {
                   transition="transform 0.3s"
                   _hover={{ transform: 'scale(1.05)' }}
                 />
+                {/* Color accent overlay */}
+                <Box
+                  position="absolute"
+                  bottom="0"
+                  left="0"
+                  right="0"
+                  h="4px"
+                  bg={product.color}
+                />
               </Box>
 
               {/* Product Info */}
@@ -152,14 +173,16 @@ function ProductFocus() {
                 <Box>
                   <Heading
                     as="h3"
-                    fontSize="lg"
-                    fontWeight="600"
-                    fontFamily="body"
+                    fontSize="xl"
+                    fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                    fontWeight="400"
+                    letterSpacing="0.05em"
                     mb={1}
+                    color="brand.800"
                   >
-                    {product.name}
+                    {product.name.toUpperCase()}
                   </Heading>
-                  <Text fontSize="sm" color="brand.700" fontWeight="500">
+                  <Text fontSize="sm" color="accent.leaf" fontWeight="600">
                     {product.origin}
                   </Text>
                 </Box>
@@ -179,10 +202,10 @@ function ProductFocus() {
                       borderBottom="1px solid"
                       borderColor="gray.200"
                     >
-                      <Text fontSize="xs" color="neutral.stone">
+                      <Text fontSize="xs" color="neutral.stone" textTransform="uppercase" letterSpacing="0.05em">
                         {spec.label}
                       </Text>
-                      <Text fontSize="xs" fontWeight="500" textAlign="right">
+                      <Text fontSize="xs" fontWeight="600" textAlign="right" color="brand.800">
                         {spec.value}
                       </Text>
                     </HStack>
@@ -194,9 +217,28 @@ function ProductFocus() {
         </SimpleGrid>
 
         {/* Additional Products - simple list */}
-        <Box ref={moreProductsRef} className="reveal" pt={4}>
-          <Text fontSize="sm" color="neutral.stone" lineHeight="1.8">
-            <Text as="span" fontWeight="500" color="neutral.charcoal">Also available:</Text>
+        <Box 
+          ref={moreProductsRef} 
+          className="reveal" 
+          pt={4}
+          p={6}
+          bg="brand.800"
+          color="white"
+        >
+          <Text 
+            fontSize="sm" 
+            lineHeight="1.8"
+            textAlign="center"
+          >
+            <Text 
+              as="span" 
+              fontWeight="600" 
+              color="accent.produce"
+              textTransform="uppercase"
+              letterSpacing="0.1em"
+            >
+              Also Available:
+            </Text>
             {' '}Limes · Lemons · Lychees · Rambutan · Star fruit · Mangosteen · Passion fruit · Frozen blueberries
           </Text>
         </Box>

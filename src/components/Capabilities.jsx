@@ -2,6 +2,7 @@
  * Capabilities Section
  * 
  * Three-column grid with real photos showing sourcing, packing, and logistics.
+ * Updated with new brand styling.
  */
 
 import {
@@ -12,6 +13,7 @@ import {
   SimpleGrid,
   VStack,
   Image,
+  HStack,
 } from '@chakra-ui/react'
 
 // Import capability images from your farm photos
@@ -28,25 +30,28 @@ const CAPABILITIES = [
     id: 'sourcing',
     title: 'Sourcing',
     description: 'We know the growers personally. Certified orchards in Michoacán, Jalisco, and Yucatán—no brokers, no surprises.',
-    accent: 'brand.700',
+    accent: 'brand.800',
     image: farmHarvestImg,
     imageAlt: 'Fresh produce being harvested at the farm',
+    number: '01',
   },
   {
     id: 'packing',
     title: 'Packing',
     description: "Every piece gets inspected and size-graded at our packhouses. Tell us your specs—we'll match them.",
-    accent: 'accent.orange',
+    accent: 'accent.leaf',
     image: packingGradingImg,
     imageAlt: 'Team member with packaged dragon fruit in our facility',
+    number: '02',
   },
   {
     id: 'logistics',
     title: 'Shipping',
     description: 'Cold chain from farm to your dock. We handle phyto certificates, USDA clearance, and temperature logs.',
-    accent: 'accent.teal',
+    accent: 'accent.produce',
     image: coldchainImg,
     imageAlt: 'Pallets of dragon fruit boxes ready for cold chain transport',
+    number: '03',
   },
 ]
 
@@ -66,13 +71,26 @@ function Capabilities() {
       <Container maxW="1200px" px={{ base: 4, md: 8 }}>
         {/* Section Header - left aligned for variety */}
         <Box ref={headerRef} className="reveal" mb={{ base: 10, md: 14 }} maxW="600px">
+          <Text
+            fontSize="sm"
+            fontWeight="600"
+            color="accent.leaf"
+            textTransform="uppercase"
+            letterSpacing="0.15em"
+            mb={3}
+          >
+            How It Works
+          </Text>
           <Heading
             as="h2"
-            fontSize={{ base: '2xl', md: '3xl' }}
+            fontSize={{ base: '3xl', md: '4xl' }}
+            fontFamily="'Bebas Neue', 'Oswald', sans-serif"
             fontWeight="400"
             mb={4}
+            letterSpacing="0.02em"
+            color="brand.800"
           >
-            How it works
+            FROM ORCHARD TO YOUR DOCK
           </Heading>
           <Text
             fontSize="md"
@@ -95,10 +113,26 @@ function Capabilities() {
               spacing={0}
               bg="white"
               overflow="hidden"
-              borderTop="3px solid"
-              borderColor={cap.accent}
               h="100%"
+              position="relative"
             >
+              {/* Number badge */}
+              <Box
+                position="absolute"
+                top="4"
+                left="4"
+                bg={cap.accent}
+                color="white"
+                px={3}
+                py={1}
+                fontSize="xs"
+                fontWeight="600"
+                letterSpacing="0.1em"
+                zIndex="2"
+              >
+                {cap.number}
+              </Box>
+              
               {/* Image */}
               <Box h="200px" overflow="hidden" bg="gray.100">
                 <Image
@@ -113,14 +147,16 @@ function Capabilities() {
               </Box>
               
               {/* Content */}
-              <VStack align="flex-start" spacing={3} p={6} flex="1">
+              <VStack align="flex-start" spacing={3} p={6} flex="1" borderTop="3px solid" borderColor={cap.accent}>
                 <Heading
                   as="h3"
-                  fontSize="lg"
-                  fontWeight="600"
-                  fontFamily="body"
+                  fontSize="xl"
+                  fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                  fontWeight="400"
+                  letterSpacing="0.05em"
+                  color="brand.800"
                 >
-                  {cap.title}
+                  {cap.title.toUpperCase()}
                 </Heading>
                 
                 <Text
