@@ -18,6 +18,9 @@ import {
 // Import logo component
 import { Logo } from './Logo'
 
+// Leaf pattern SVG for background
+const leafPatternSvg = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c0 0 10 10 10 20s-10 15-20 5c0 0 5-10 10-20z' fill='%23ffffff'/%3E%3C/svg%3E")`
+
 // Tagline banner above footer
 export function Tagline() {
   return (
@@ -35,7 +38,7 @@ export function Tagline() {
         right="0"
         bottom="0"
         opacity="0.05"
-        bgImage="url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c0 0 10 10 10 20s-10 15-20 5c0 0 5-10 10-20z' fill='%23ffffff'/%3E%3C/svg%3E\")"
+        bgImage={leafPatternSvg}
         bgRepeat="repeat"
       />
       <Container maxW="1200px" px={{ base: 4, md: 8 }} position="relative">
