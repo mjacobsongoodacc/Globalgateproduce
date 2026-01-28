@@ -2,12 +2,13 @@
  * Logo Component
  * 
  * Global Gate Produce logo using the official brand images.
+ * Uses mix-blend-mode to make dark background transparent.
  */
 
 import { Box, Image } from '@chakra-ui/react'
 
 // Import logo images
-import logoFull from '../assets/images/Globalgatelogo.png'
+import logoFull from '../assets/images/Globalgatelogo.jpg'
 import logoMini from '../assets/images/Globalgatelogomini.png'
 
 // Full "GLOBAL GATE" Logo
@@ -37,6 +38,7 @@ function Logo({
         h={sizes[size]}
         w="auto"
         objectFit="contain"
+        mixBlendMode="lighten"
       />
     </Box>
   )
@@ -77,6 +79,7 @@ function LogoMark({
         h={sizes[size]}
         w="auto"
         objectFit="contain"
+        mixBlendMode="lighten"
       />
     </Box>
   )
@@ -91,6 +94,7 @@ function LogoIcon({ size = 36, ...props }) {
       h={`${size}px`}
       w="auto"
       objectFit="contain"
+      mixBlendMode="lighten"
       {...props}
     />
   )
