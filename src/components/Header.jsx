@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/react'
 
 // Import logo component
-import { Logo, LogoHorizontal } from './Logo'
+import { Logo } from './Logo'
 
 // Simple hamburger icon for mobile
 const MenuIcon = () => (
