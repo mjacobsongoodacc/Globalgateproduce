@@ -33,17 +33,14 @@ const QUALITY_PILLARS = [
   {
     title: 'Field Visits',
     description: "We inspect partner farms regularly. If something's off, we catch it early.",
-    icon: '🌱',
   },
   {
     title: 'Temperature Logs',
     description: 'Continuous monitoring from packhouse to your receiving dock.',
-    icon: '❄️',
   },
   {
     title: 'Full Traceability',
     description: 'Every box tracked back to the orchard it came from.',
-    icon: '📦',
   },
 ]
 
@@ -128,7 +125,6 @@ function Quality() {
               _hover={{ bg: 'whiteAlpha.100' }}
               transition="background 0.2s"
             >
-              <Text fontSize="2xl" mb={2}>{pillar.icon}</Text>
               <Text 
                 fontFamily="'Bebas Neue', 'Oswald', sans-serif"
                 fontWeight="400" 
