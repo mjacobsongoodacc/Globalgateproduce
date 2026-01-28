@@ -1,14 +1,22 @@
 /**
  * Logo Component
  * 
- * Global Gate Produce logo with the distinctive G and leaf design.
- * Matches the official brand styling.
+ * Global Gate Produce logo matching the official brand.
+ * Features the distinctive G with leaf design.
  */
 
-import { Box, Text, Flex } from '@chakra-ui/react'
+import { Box, Text, Flex, Image } from '@chakra-ui/react'
 
-// SVG Logo Icon - The "G" with leaf
-function LogoIcon({ size = 40, color = 'currentColor', leafColor = '#4a7c59' }) {
+// SVG Logo Icon - The "G" with leaf (matches official logo)
+function LogoIcon({ size = 40, variant = 'light' }) {
+  const colors = {
+    light: { main: '#0d2818', leaf: '#4a9c2d' },
+    dark: { main: '#ffffff', leaf: '#4a9c2d' },
+    white: { main: '#ffffff', leaf: '#6abf4b' },
+  }
+  
+  const { main, leaf } = colors[variant] || colors.light
+
   return (
     <svg
       width={size}
@@ -17,108 +25,115 @@ function LogoIcon({ size = 40, color = 'currentColor', leafColor = '#4a7c59' }) 
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* The "G" shape */}
+      {/* The "G" shape - thick C with horizontal bar */}
       <path
-        d="M50 5C25.1 5 5 25.1 5 50C5 74.9 25.1 95 50 95C74.9 95 95 74.9 95 50C95 37.5 90 26.2 82 18L82 18C82 18 72 28 72 50C72 50 72 55 67 55L50 55L50 45L62 45C62 45 62 35 50 35C38 35 30 43 30 55C30 67 38 75 50 75C58 75 64.5 71 68 65"
-        stroke={color}
-        strokeWidth="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
+        d="M50 8C26.8 8 8 26.8 8 50s18.8 42 42 42c18.5 0 34.3-12 40-28.5H55v-15h37c.6 3.2 1 6.5 1 10 0 25.4-20.6 46-46 46S1 75.4 1 50 21.6 4 47 4c12.7 0 24.2 5.2 32.5 13.5L68 29C62 23 54 19.5 45 19.5 28.5 19.5 15 33 15 49.5S28.5 79.5 45 79.5c13 0 24-8.3 28-20H50V48h42"
+        fill={main}
       />
-      {/* The leaf */}
+      {/* Simplified G shape */}
       <path
-        d="M75 8C75 8 85 18 85 30C85 30 75 35 65 25C65 25 70 15 75 8Z"
-        fill={leafColor}
+        d="M50 10C28 10 10 28 10 50s18 40 40 40c17.5 0 32.5-11.3 38-27H55V52h30c-4 18-20 32-38 32-22 0-40-18-40-40s18-40 40-40c11 0 21 4.5 28.3 11.7l-8.5 8.5C61 19 56 16.5 50 16.5c-18.5 0-33.5 15-33.5 33.5S31.5 83.5 50 83.5c14.5 0 27-9.5 31.5-22.5H50V50h38"
+        fill={main}
       />
-      {/* Leaf stem */}
+      {/* Leaf */}
       <path
-        d="M75 8C75 8 72 20 68 28"
-        stroke={leafColor}
+        d="M72 8c0 0 18 12 18 28 0 0-8 6-22-6C68 30 66 16 72 8z"
+        fill={leaf}
+      />
+      <path
+        d="M72 8c3 8 4 16 2 22"
+        stroke={leaf}
         strokeWidth="2"
         strokeLinecap="round"
+        fill="none"
       />
     </svg>
   )
 }
 
-// Full Logo with text
+// Full "GLOBAL GATE" Logo - matches the official branding
 function Logo({ 
-  variant = 'dark', // 'dark' | 'light' | 'white'
-  size = 'md', // 'sm' | 'md' | 'lg'
-  showIcon = true,
+  variant = 'dark', // 'dark' (white on dark bg) | 'light' (dark on light bg)
+  size = 'md', // 'sm' | 'md' | 'lg' | 'xl'
   ...props 
 }) {
   // Size configurations
   const sizes = {
-    sm: { icon: 28, text: 'lg', spacing: 2 },
-    md: { icon: 36, text: 'xl', spacing: 2 },
-    lg: { icon: 48, text: '2xl', spacing: 3 },
+    sm: { height: '32px', fontSize: 'lg' },
+    md: { height: '40px', fontSize: 'xl' },
+    lg: { height: '56px', fontSize: '2xl' },
+    xl: { height: '80px', fontSize: '4xl' },
   }
   
   const currentSize = sizes[size]
   
-  // Color configurations
-  const colors = {
-    dark: {
-      primary: 'white',
-      secondary: 'accent.produce',
-      icon: 'white',
-      leaf: '#4a7c59',
-    },
-    light: {
-      primary: 'brand.800',
-      secondary: 'accent.produce',
-      icon: 'brand.800',
-      leaf: '#4a7c59',
-    },
-    white: {
-      primary: 'white',
-      secondary: 'white',
-      icon: 'white',
-      leaf: '#7cb342',
-    },
-  }
-  
-  const currentColors = colors[variant]
+  // Color based on variant
+  const textColor = variant === 'dark' || variant === 'white' ? 'white' : 'brand.800'
+  const leafColor = '#4a9c2d'
 
   return (
     <Flex 
       as="a" 
       href="/" 
       align="center" 
-      gap={currentSize.spacing}
+      gap={2}
       _hover={{ opacity: 0.9 }} 
       transition="opacity 0.2s"
       {...props}
     >
-      {showIcon && (
-        <Box color={currentColors.icon}>
-          <LogoIcon 
-            size={currentSize.icon} 
-            color="currentColor"
-            leafColor={currentColors.leaf}
-          />
-        </Box>
-      )}
-      <Box lineHeight="0.9">
-        <Text
-          fontSize={currentSize.text}
-          fontFamily="'Bebas Neue', 'Oswald', sans-serif"
-          fontWeight="400"
-          color={currentColors.primary}
-          letterSpacing="0.05em"
-          lineHeight="1"
+      {/* G Icon with Leaf */}
+      <Box position="relative" h={currentSize.height} w={currentSize.height}>
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 110"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          GLOBAL
+          {/* The G - C shape with bar */}
+          <path
+            d="M45 95C20.7 95 1 75.3 1 51S20.7 7 45 7c12.2 0 23.3 5 31.3 13l-10 10c-5.5-5.5-13-9-21.3-9C27.3 21 13 35.3 13 53s14.3 32 32 32c14 0 26-9 30.5-22H50V51h45v4c0 22-18 40-40 40h-10z"
+            fill={textColor === 'white' ? 'white' : '#0d2818'}
+          />
+          {/* Horizontal bar of G */}
+          <path
+            d="M50 51h38v12H50z"
+            fill={textColor === 'white' ? 'white' : '#0d2818'}
+          />
+          {/* Leaf */}
+          <path
+            d="M78 2c0 0 20 14 20 32 0 0-10 8-26-6 0 0-2-16 6-26z"
+            fill={leafColor}
+          />
+          <path
+            d="M78 2c4 10 5 20 2 26"
+            stroke={leafColor}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+      </Box>
+      
+      {/* Text: LOBAL stacked with GATE */}
+      <Box lineHeight="0.85" ml={-1}>
+        <Text
+          fontSize={currentSize.fontSize}
+          fontFamily="'Bebas Neue', 'Oswald', Impact, sans-serif"
+          fontWeight="400"
+          color={textColor}
+          letterSpacing="0.02em"
+          lineHeight="0.9"
+        >
+          LOBAL
         </Text>
         <Text
-          fontSize={currentSize.text}
-          fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+          fontSize={currentSize.fontSize}
+          fontFamily="'Bebas Neue', 'Oswald', Impact, sans-serif"
           fontWeight="400"
-          color={currentColors.primary}
-          letterSpacing="0.05em"
-          lineHeight="1"
+          color={textColor}
+          letterSpacing="0.08em"
+          lineHeight="0.9"
         >
           GATE
         </Text>
@@ -127,7 +142,7 @@ function Logo({
   )
 }
 
-// Horizontal logo variant
+// Horizontal logo: G + "GLOBAL GATE" on one line  
 function LogoHorizontal({ 
   variant = 'dark',
   size = 'md',
@@ -135,74 +150,119 @@ function LogoHorizontal({
   ...props 
 }) {
   const sizes = {
-    sm: { icon: 32, global: 'xl', gate: 'xl', produce: 'sm' },
-    md: { icon: 40, global: '2xl', gate: '2xl', produce: 'sm' },
-    lg: { icon: 56, global: '3xl', gate: '3xl', produce: 'md' },
+    sm: { height: '28px', fontSize: 'md', tagSize: 'xs' },
+    md: { height: '36px', fontSize: 'lg', tagSize: 'xs' },
+    lg: { height: '48px', fontSize: 'xl', tagSize: 'sm' },
   }
   
   const currentSize = sizes[size]
-  
-  const colors = {
-    dark: {
-      primary: 'white',
-      produce: 'accent.produce',
-      leaf: '#4a7c59',
-    },
-    light: {
-      primary: 'brand.800',
-      produce: 'accent.leaf',
-      leaf: '#4a7c59',
-    },
-    white: {
-      primary: 'white',
-      produce: 'rgba(255,255,255,0.7)',
-      leaf: '#7cb342',
-    },
-  }
-  
-  const currentColors = colors[variant]
+  const textColor = variant === 'dark' || variant === 'white' ? 'white' : 'brand.800'
+  const leafColor = '#4a9c2d'
+  const taglineColor = variant === 'dark' ? 'accent.produce' : 'accent.leaf'
 
   return (
     <Flex 
       as="a" 
       href="/" 
       align="center" 
-      gap={3}
+      gap={2}
       _hover={{ opacity: 0.9 }} 
       transition="opacity 0.2s"
       {...props}
     >
-      <Box color={currentColors.primary}>
-        <LogoIcon 
-          size={currentSize.icon} 
-          color="currentColor"
-          leafColor={currentColors.leaf}
-        />
+      {/* G Icon with Leaf */}
+      <Box h={currentSize.height} w={currentSize.height} flexShrink={0}>
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 110"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* The G */}
+          <path
+            d="M45 95C20.7 95 1 75.3 1 51S20.7 7 45 7c12.2 0 23.3 5 31.3 13l-10 10c-5.5-5.5-13-9-21.3-9C27.3 21 13 35.3 13 53s14.3 32 32 32c14 0 26-9 30.5-22H50V51h45v4c0 22-18 40-40 40h-10z"
+            fill={textColor === 'white' ? 'white' : '#0d2818'}
+          />
+          <path
+            d="M50 51h38v12H50z"
+            fill={textColor === 'white' ? 'white' : '#0d2818'}
+          />
+          {/* Leaf */}
+          <path
+            d="M78 2c0 0 20 14 20 32 0 0-10 8-26-6 0 0-2-16 6-26z"
+            fill={leafColor}
+          />
+          <path
+            d="M78 2c4 10 5 20 2 26"
+            stroke={leafColor}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
       </Box>
-      <Box>
+      
+      {/* Text */}
+      <Flex direction="column" justify="center" lineHeight="1">
         <Text
-          fontSize={currentSize.global}
-          fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+          fontSize={currentSize.fontSize}
+          fontFamily="'Bebas Neue', 'Oswald', Impact, sans-serif"
           fontWeight="400"
-          color={currentColors.primary}
-          letterSpacing="0.08em"
+          color={textColor}
+          letterSpacing="0.05em"
           lineHeight="1"
+          whiteSpace="nowrap"
         >
           GLOBAL GATE
           {showTagline && (
-            <Text 
-              as="span" 
-              color={currentColors.produce}
-              ml={2}
-            >
+            <Text as="span" color={taglineColor} ml={2}>
               PRODUCE
             </Text>
           )}
         </Text>
-      </Box>
+      </Flex>
     </Flex>
   )
 }
 
-export { Logo, LogoHorizontal, LogoIcon }
+// Simple G icon only (for favicon, small spaces)
+function LogoMark({ size = 32, variant = 'dark' }) {
+  const fillColor = variant === 'dark' || variant === 'white' ? '#ffffff' : '#0d2818'
+  const leafColor = '#4a9c2d'
+  
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 110"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* The G */}
+      <path
+        d="M45 95C20.7 95 1 75.3 1 51S20.7 7 45 7c12.2 0 23.3 5 31.3 13l-10 10c-5.5-5.5-13-9-21.3-9C27.3 21 13 35.3 13 53s14.3 32 32 32c14 0 26-9 30.5-22H50V51h45v4c0 22-18 40-40 40h-10z"
+        fill={fillColor}
+      />
+      <path
+        d="M50 51h38v12H50z"
+        fill={fillColor}
+      />
+      {/* Leaf */}
+      <path
+        d="M78 2c0 0 20 14 20 32 0 0-10 8-26-6 0 0-2-16 6-26z"
+        fill={leafColor}
+      />
+      <path
+        d="M78 2c4 10 5 20 2 26"
+        stroke={leafColor}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  )
+}
+
+export { Logo, LogoHorizontal, LogoIcon, LogoMark }
 export default Logo

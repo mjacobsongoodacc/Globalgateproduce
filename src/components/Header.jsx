@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/react'
 
 // Import logo component
-import { LogoHorizontal } from './Logo'
+import { Logo, LogoHorizontal } from './Logo'
 
 // Simple hamburger icon for mobile
 const MenuIcon = () => (
@@ -63,7 +63,7 @@ function Header() {
         <Flex h="72px" align="center" justify="space-between">
           
           {/* Global Gate Produce Logo */}
-          <LogoHorizontal variant="dark" size="sm" showTagline />
+          <Logo variant="dark" size="sm" />
 
           {/* Desktop Navigation */}
           <HStack spacing={8} display={{ base: 'none', md: 'flex' }}>
