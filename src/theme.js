@@ -2,9 +2,8 @@
  * Global Gate Produce - Theme Configuration
  * 
  * Brand Colors (from official logo):
- * - Primary Dark Green: #0d2818 (deep forest green from logo background)
- * - Leaf Green: #4a7c59 (the leaf accent)
- * - Light Produce Green: #7cb342 (for "PRODUCE" text)
+ * - Primary Dark Green: #1a3a2a (forest green from logo background)
+ * - Leaf Green: #5fa052 (the leaf accent)
  * - White: #ffffff (logo text)
  * 
  * Typography: Bold, modern sans-serif matching the logo
@@ -21,25 +20,25 @@ const theme = extendTheme({
   },
   
   colors: {
-    // Primary brand green - deep forest green from logo
+    // Primary brand green - forest green from logo background
     brand: {
-      50: '#e8f5e9',
-      100: '#c8e6c9',
-      200: '#a5d6a7',
-      300: '#81c784',
-      400: '#66bb6a',
-      500: '#4caf50',
-      600: '#2e7d32',
-      700: '#1b4d3e',   // Slightly lighter for hover states
-      800: '#0d2818',   // PRIMARY - Deep forest green from logo
-      900: '#071810',   // Darker shade
+      50: '#e8f5ec',
+      100: '#c8e6cf',
+      200: '#a5d6b0',
+      300: '#81c791',
+      400: '#5fb872',
+      500: '#3d9956',
+      600: '#2d7a44',
+      700: '#245c36',   // Hover state
+      800: '#1a3a2a',   // PRIMARY - Forest green from logo
+      900: '#0f2218',   // Darker shade
     },
     
     // Accent colors for highlights
     accent: {
-      leaf: '#4a7c59',       // The leaf green
-      produce: '#7cb342',    // Light green for "PRODUCE"
-      lime: '#8bc34a',       // Bright lime accent
+      leaf: '#5fa052',       // The leaf green from logo
+      produce: '#6ab04c',    // Light green accent
+      lime: '#7ec850',       // Bright lime
       white: '#ffffff',      // Clean white
       cream: '#f5f5f0',      // Off-white for backgrounds
     },
@@ -61,10 +60,6 @@ const theme = extendTheme({
         color: 'neutral.charcoal',
         lineHeight: '1.6',
       },
-      // Import fonts
-      '@import': [
-        "url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap')",
-      ],
     },
   },
   
@@ -78,7 +73,7 @@ const theme = extendTheme({
         transition: 'all 0.2s',
       },
       variants: {
-        // Primary button - deep forest green background
+        // Primary button - forest green background
         primary: {
           bg: 'brand.800',
           color: 'white',

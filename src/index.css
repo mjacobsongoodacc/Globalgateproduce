@@ -18,7 +18,7 @@ html, body {
 
 /* Selection color matches brand */
 ::selection {
-  background-color: #0d2818;
+  background-color: #1a3a2a;
   color: white;
 }
 
@@ -37,7 +37,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0d2818;
+  background: #1a3a2a;
 }
 
 /* ========================================
