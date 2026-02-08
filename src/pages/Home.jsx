@@ -1,14 +1,15 @@
 /**
  * Home Page
  * 
- * Main landing page - clean sections without problematic images.
+ * Main landing page with all sections.
  */
 
 import { Box } from '@chakra-ui/react'
 
-// Import all sections
+// Import components
 import Header from '../components/Header'
 import Hero from '../components/Hero'
+import ExportScale from '../components/ExportScale'
 import Capabilities from '../components/Capabilities'
 import ProductFocus from '../components/ProductFocus'
 import Quality from '../components/Quality'
@@ -18,31 +19,18 @@ import Footer, { Tagline } from '../components/Footer'
 function Home() {
   return (
     <Box>
-      {/* Fixed header navigation */}
       <Header />
       
-      {/* Main content sections */}
-      <main>
-        {/* Hero: Main headline and CTA */}
+      <Box as="main">
         <Hero />
-        
-        {/* Capabilities: What we do */}
+        <ExportScale />
         <Capabilities />
-        
-        {/* Products: Avocados, dragon fruit with specs */}
         <ProductFocus />
-        
-        {/* Quality: Certifications */}
         <Quality />
-        
-        {/* Contact: Form and info */}
         <ContactForm />
-      </main>
+      </Box>
       
-      {/* Tagline banner */}
       <Tagline />
-      
-      {/* Footer */}
       <Footer />
     </Box>
   )

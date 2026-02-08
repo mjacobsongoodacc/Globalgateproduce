@@ -1,8 +1,8 @@
 /**
- * Quality & Certifications Section
+ * Quality Assurance Section
  * 
- * Shows certification badges and quality commitment.
- * Updated with new brand styling.
+ * Highlights quality control processes.
+ * Uses forest green background with lime/leaf accents (matches screenshots).
  */
 
 import {
@@ -10,172 +10,115 @@ import {
   Container,
   Heading,
   Text,
-  VStack,
   SimpleGrid,
+  VStack,
   HStack,
+  Flex,
 } from '@chakra-ui/react'
 
-// Import reveal hook
 import { useReveal, useStaggerReveal } from '../hooks/useReveal'
+import { useLanguage } from '../context/LanguageContext'
 
-// Certifications list
-const CERTIFICATIONS = [
-  { id: 'usda', label: 'USDA' },
-  { id: 'globalgap', label: 'GlobalGAP' },
-  { id: 'senasica', label: 'SENASICA' },
-  { id: 'haccp', label: 'HACCP' },
-  { id: 'organic', label: 'Organic' },
-  { id: 'fsma', label: 'FSMA' },
-]
+// Simple check icon
+const CheckBadgeIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M9 12l2 2 4-4"/>
+    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+  </svg>
+)
 
-// Quality pillars
-const QUALITY_PILLARS = [
-  {
-    title: 'Field Visits',
-    description: "We inspect partner farms regularly. If something's off, we catch it early.",
-  },
-  {
-    title: 'Temperature Logs',
-    description: 'Continuous monitoring from packhouse to your receiving dock.',
-  },
-  {
-    title: 'Full Traceability',
-    description: 'Every box tracked back to the orchard it came from.',
-  },
-]
-
-// Leaf pattern SVG for background
-const leafPatternSvg = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c0 0 10 10 10 20s-10 15-20 5c0 0 5-10 10-20z' fill='%23ffffff'/%3E%3C/svg%3E")`
+// Accent colors for alternating items
+const ACCENT_COLORS = ['accent.leaf', 'brand.teal', 'brand.green']
 
 function Quality() {
-  // Reveal refs
+  const { t } = useLanguage()
   const headerRef = useReveal()
-  const pillarRefs = useStaggerReveal(QUALITY_PILLARS.length, { staggerDelay: 80 })
-  const certsRef = useReveal()
+  const qualityRefs = useStaggerReveal(3, { staggerDelay: 80 })
+
+  const qualityPoints = [
+    {
+      title: t('quality.fieldVisits.title'),
+      description: t('quality.fieldVisits.description'),
+    },
+    {
+      title: t('quality.temperatureLogs.title'),
+      description: t('quality.temperatureLogs.description'),
+    },
+    {
+      title: t('quality.traceability.title'),
+      description: t('quality.traceability.description'),
+    },
+  ]
 
   return (
-    <Box
-      as="section"
-      id="quality"
-      py={{ base: 16, md: 24 }}
-      bg="brand.800"
-      color="white"
-      position="relative"
-      overflow="hidden"
-    >
-      {/* Decorative pattern */}
-      <Box
-        position="absolute"
-        top="0"
-        left="0"
-        right="0"
-        bottom="0"
-        opacity="0.03"
-        bgImage={leafPatternSvg}
-        bgRepeat="repeat"
-      />
-      
-      <Container maxW="1200px" px={{ base: 4, md: 8 }} position="relative">
-        {/* Header - left aligned */}
-        <Box ref={headerRef} className="reveal" mb={{ base: 10, md: 14 }} maxW="550px">
-          <Text
-            fontSize="sm"
-            fontWeight="600"
-            color="accent.produce"
-            textTransform="uppercase"
-            letterSpacing="0.15em"
-            mb={3}
-          >
-            Quality Assurance
-          </Text>
+    <Box as="section" id="quality" py={{ base: 16, md: 24 }} bg="brand.forest">
+      <Container maxW="1200px" px={{ base: 4, md: 8 }}>
+        {/* Header */}
+        <Box ref={headerRef} className="reveal" mb={{ base: 10, md: 14 }}>
+          <HStack spacing={3} mb={3}>
+            <Box w="40px" h="3px" bg="accent.leaf" />
+            <Text
+              fontSize="sm"
+              fontWeight="600"
+              color="accent.leaf"
+              textTransform="uppercase"
+              letterSpacing="0.15em"
+            >
+              {t('quality.label')}
+            </Text>
+          </HStack>
           <Heading
             as="h2"
             fontSize={{ base: '3xl', md: '4xl' }}
             fontFamily="'Bebas Neue', 'Oswald', sans-serif"
             fontWeight="400"
-            color="white"
             mb={4}
             letterSpacing="0.02em"
+            color="white"
           >
-            THE PAPERWORK IS HANDLED
+            {t('quality.title')}
           </Heading>
-          
-          <Text
-            fontSize="md"
-            color="whiteAlpha.800"
-            lineHeight="1.7"
-          >
-            Phyto certificates, USDA/APHIS clearance, certificates of origin—we 
-            deal with it so you don't have to.
+          <Text fontSize="md" color="whiteAlpha.800" lineHeight="1.7" maxW="600px">
+            {t('quality.description')}
           </Text>
         </Box>
 
-        {/* Quality Pillars */}
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} mb={12}>
-          {QUALITY_PILLARS.map((pillar, index) => (
-            <VStack
-              key={pillar.title}
-              ref={pillarRefs(index)}
+        {/* Quality Points */}
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
+          {qualityPoints.map((point, index) => (
+            <Box
+              key={point.title}
+              ref={qualityRefs(index)}
               className="reveal"
-              align="flex-start"
               p={6}
               bg="whiteAlpha.50"
-              borderLeft="3px solid"
-              borderColor="accent.produce"
-              _hover={{ bg: 'whiteAlpha.100' }}
-              transition="background 0.2s"
+              borderLeft="4px solid"
+              borderLeftColor={ACCENT_COLORS[index % ACCENT_COLORS.length]}
+              border="1px solid"
+              borderColor="whiteAlpha.100"
             >
-              <Text 
-                fontFamily="'Bebas Neue', 'Oswald', sans-serif"
-                fontWeight="400" 
-                color="white" 
-                fontSize="xl"
-                letterSpacing="0.05em"
-              >
-                {pillar.title.toUpperCase()}
-              </Text>
-              <Text fontSize="sm" color="whiteAlpha.700" lineHeight="1.7">
-                {pillar.description}
-              </Text>
-            </VStack>
+              <Flex gap={4} align="flex-start">
+                <Box color={ACCENT_COLORS[index % ACCENT_COLORS.length]} flexShrink={0}>
+                  <CheckBadgeIcon />
+                </Box>
+                <VStack align="flex-start" spacing={2}>
+                  <Text
+                    fontSize="md"
+                    fontWeight="600"
+                    color="white"
+                    fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                    letterSpacing="0.05em"
+                  >
+                    {point.title.toUpperCase()}
+                  </Text>
+                  <Text fontSize="sm" color="whiteAlpha.700" lineHeight="1.7">
+                    {point.description}
+                  </Text>
+                </VStack>
+              </Flex>
+            </Box>
           ))}
         </SimpleGrid>
-
-        {/* Certification badges */}
-        <Box 
-          ref={certsRef} 
-          className="reveal" 
-          py={8}
-          borderTop="1px solid"
-          borderColor="whiteAlpha.200"
-        >
-          <HStack 
-            spacing={{ base: 4, md: 8 }} 
-            justify="center"
-            flexWrap="wrap"
-            gap={4}
-          >
-            {CERTIFICATIONS.map((cert) => (
-              <Box
-                key={cert.id}
-                px={4}
-                py={2}
-                border="1px solid"
-                borderColor="whiteAlpha.300"
-                bg="whiteAlpha.50"
-              >
-                <Text 
-                  fontSize="xs" 
-                  fontWeight="600"
-                  color="white"
-                  letterSpacing="0.1em"
-                >
-                  {cert.label}
-                </Text>
-              </Box>
-            ))}
-          </HStack>
-        </Box>
       </Container>
     </Box>
   )

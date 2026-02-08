@@ -1,246 +1,249 @@
 /**
- * Product Focus Section
+ * Product Focus Section - "What We Ship"
  * 
- * Highlights key products with real photos and specifications.
- * Updated with new brand styling.
+ * Showcases main products with images and detailed attributes.
+ * Uses forest green theme with leaf green accents.
  */
 
 import {
   Box,
   Container,
-  Flex,
   Heading,
   Text,
-  VStack,
-  HStack,
   SimpleGrid,
+  VStack,
   Image,
+  Button,
+  Flex,
+  Link,
 } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 
-// Import dragon fruit images from your photos
-import dragonfruitRedImg from '../assets/images/dragonfruit-package.png'
-import dragonfruitYellowImg from '../assets/images/dragonfruit-green.png'
-
-// Import reveal hook
 import { useReveal, useStaggerReveal } from '../hooks/useReveal'
+import { useLanguage } from '../context/LanguageContext'
 
-// Web-sourced avocado image (royalty-free from Unsplash)
-const AVOCADO_IMAGE_URL = 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=400&h=300&fit=crop'
+// Import product images
+import avocadoImage from '../assets/images/Homepageavocadocrate.png'
+import dragonFruitRedImage from '../assets/images/homepageReddragonfruitcrate.png'
+import dragonFruitYellowImage from '../assets/images/homepageyellowdragonfruitcrate.png'
 
-// Product data with images
-const PRODUCTS = [
+// Accent colors for bottom borders (forest green theme)
+const ACCENT_COLORS = ['accent.leaf', 'brand.teal', 'brand.green']
+
+// Products data with translations and full attributes
+const getProducts = (language) => [
   {
-    id: 'avocado',
-    name: 'Hass Avocados',
+    id: 'avocados',
+    name: language === 'en' ? 'Zavaya Hass Avocados' : 'Aguacates Hass Zavaya',
     origin: 'Michoacán & Jalisco',
-    description: 'Year-round from certified orchards. We can match most size and pack specs.',
-    specs: [
-      { label: 'Sizes', value: '32, 36, 40, 48, 60, 70, 84 ct' },
-      { label: 'Pack', value: '10kg / 25lb boxes' },
-      { label: 'Season', value: 'Year-round' },
+    description: language === 'en'
+      ? 'Year-round from certified orchards. We can match most size and pack specs.'
+      : 'Todo el año desde huertos certificados. Podemos cumplir la mayoría de especificaciones de tamaño y empaque.',
+    image: avocadoImage,
+    link: '/products/avocados-hass',
+    attributes: [
+      { label: language === 'en' ? 'SIZES' : 'TAMAÑOS', value: '32, 36, 40, 48, 60, 70, 84 ct' },
+      { label: language === 'en' ? 'PACK' : 'EMPAQUE', value: '10kg / 25lb' },
+      { label: language === 'en' ? 'SEASON' : 'TEMPORADA', value: language === 'en' ? 'Year-round' : 'Todo el año' },
     ],
-    color: 'brand.800',
-    imageUrl: AVOCADO_IMAGE_URL,
-    imageAlt: 'Fresh Hass avocados',
   },
   {
-    id: 'dragon-red',
-    name: 'Red Dragon Fruit',
-    origin: 'Yucatán Peninsula',
-    description: 'Magenta flesh, export-ready packaging. Organic available.',
-    specs: [
-      { label: 'Flesh', value: 'Red / Magenta' },
-      { label: 'Pack', value: '5kg clamshells, 10lb boxes' },
-      { label: 'Season', value: 'May–Nov peak' },
+    id: 'dragon-fruit-red',
+    name: language === 'en' ? 'Zavaya Dragon Fruit (Red)' : 'Pitahaya Roja Zavaya',
+    origin: language === 'en' ? 'Yucatán Peninsula' : 'Península de Yucatán',
+    description: language === 'en'
+      ? 'Magenta flesh, export-ready packaging. Organic available.'
+      : 'Pulpa magenta, empaque listo para exportar. Orgánico disponible.',
+    image: dragonFruitRedImage,
+    link: '/products/dragon-fruit-red',
+    attributes: [
+      { label: language === 'en' ? 'FLESH' : 'PULPA', value: language === 'en' ? 'Red / Magenta' : 'Roja / Magenta' },
+      { label: language === 'en' ? 'PACK' : 'EMPAQUE', value: '5kg, 10lb' },
+      { label: language === 'en' ? 'SEASON' : 'TEMPORADA', value: language === 'en' ? 'May–Nov peak' : 'May–Nov pico' },
     ],
-    color: '#c2185b',
-    image: dragonfruitRedImg,
-    imageAlt: 'Red dragon fruit in packaging',
   },
   {
-    id: 'dragon-yellow',
-    name: 'Yellow Dragon Fruit',
-    origin: 'Yucatán Peninsula',
-    description: 'Sweet white flesh. Limited supply—ask about availability.',
-    specs: [
-      { label: 'Flesh', value: 'White / Sweet' },
-      { label: 'Pack', value: '5kg clamshells' },
-      { label: 'Season', value: 'Limited' },
+    id: 'dragon-fruit-yellow',
+    name: language === 'en' ? 'Zavaya Dragon Fruit (Yellow)' : 'Pitahaya Amarilla Zavaya',
+    origin: language === 'en' ? 'Yucatán Peninsula' : 'Península de Yucatán',
+    description: language === 'en'
+      ? 'Sweet white flesh. Limited supply—ask about availability.'
+      : 'Pulpa blanca dulce. Suministro limitado—consulta disponibilidad.',
+    image: dragonFruitYellowImage,
+    link: '/products/dragon-fruit-yellow',
+    attributes: [
+      { label: language === 'en' ? 'FLESH' : 'PULPA', value: language === 'en' ? 'White / Sweet' : 'Blanca / Dulce' },
+      { label: language === 'en' ? 'PACK' : 'EMPAQUE', value: '5kg' },
+      { label: language === 'en' ? 'SEASON' : 'TEMPORADA', value: language === 'en' ? 'Limited' : 'Limitada' },
     ],
-    color: 'accent.produce',
-    image: dragonfruitYellowImg,
-    imageAlt: 'Yellow dragon fruit',
   },
 ]
 
-// Additional products offered
-const MORE_PRODUCTS = [
-  'Limes',
-  'Lemons', 
-  'Lychees',
-  'Rambutan',
-  'Star Fruit',
-  'Mangosteen',
-  'Passion Fruit',
-  'Frozen Blueberries',
-]
+// Arrow icon for "Learn More"
+const ArrowIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+  </svg>
+)
 
 function ProductFocus() {
-  // Reveal refs
+  const { t, language } = useLanguage()
   const headerRef = useReveal()
-  // Product cards have images, use slower image variant
-  const productRefs = useStaggerReveal(PRODUCTS.length, { variant: 'image', staggerDelay: 120 })
-  const moreProductsRef = useReveal()
+  const productRefs = useStaggerReveal(3, { variant: 'image', staggerDelay: 100 })
+
+  const products = getProducts(language)
+
+  const alsoAvailable = language === 'en'
+    ? ['Mangos', 'Papayas', 'Lemons', 'Blueberries', 'Frozen', 'Pulp']
+    : ['Mangos', 'Papayas', 'Limones', 'Arándanos', 'Congelados', 'Pulpa']
 
   return (
-    <Box
-      as="section"
-      id="products"
-      py={{ base: 16, md: 24 }}
-      bg="white"
-    >
+    <Box as="section" id="products" py={{ base: 16, md: 24 }} bg="neutral.offwhite">
       <Container maxW="1200px" px={{ base: 4, md: 8 }}>
         {/* Section Header */}
-        <Box ref={headerRef} className="reveal" mb={{ base: 10, md: 14 }} maxW="500px">
+        <Box ref={headerRef} className="reveal" mb={{ base: 10, md: 14 }}>
           <Text
             fontSize="sm"
             fontWeight="600"
-            color="accent.leaf"
+            color="brand.forest"
             textTransform="uppercase"
             letterSpacing="0.15em"
             mb={3}
           >
-            Our Products
+            {t('products.label')}
           </Text>
           <Heading
             as="h2"
             fontSize={{ base: '3xl', md: '4xl' }}
             fontFamily="'Bebas Neue', 'Oswald', sans-serif"
             fontWeight="400"
-            mb={3}
+            mb={4}
             letterSpacing="0.02em"
-            color="brand.800"
+            color="neutral.charcoal"
           >
-            WHAT WE SHIP
+            {t('products.title')}
           </Heading>
-          <Text fontSize="md" color="neutral.stone" lineHeight="1.7">
-            Our main lines, plus seasonal and specialty items by request.
+          <Text fontSize="md" color="neutral.stone" lineHeight="1.7" maxW="550px">
+            {t('products.description')}
           </Text>
         </Box>
 
-        {/* Product Cards */}
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={{ base: 8, lg: 8 }} mb={16}>
-          {PRODUCTS.map((product, index) => (
+        {/* Products Grid */}
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 8, md: 6 }} mb={10}>
+          {products.map((product, index) => (
             <Box
               key={product.id}
               ref={productRefs(index)}
               className="reveal"
-              bg="neutral.cream"
-              overflow="hidden"
+              bg="white"
+              display="flex"
+              flexDirection="column"
             >
               {/* Product Image */}
-              <Box
-                h="220px"
-                position="relative"
-                overflow="hidden"
-              >
+              <Box position="relative" overflow="hidden">
                 <Image
-                  src={product.imageUrl || product.image}
-                  alt={product.imageAlt}
+                  src={product.image}
+                  alt={product.name}
                   objectFit="cover"
                   w="100%"
-                  h="100%"
-                  transition="transform 0.3s"
-                  _hover={{ transform: 'scale(1.05)' }}
+                  h={{ base: '280px', md: '300px' }}
                 />
-                {/* Color accent overlay */}
+                {/* Bottom accent border */}
                 <Box
                   position="absolute"
                   bottom="0"
                   left="0"
                   right="0"
                   h="4px"
-                  bg={product.color}
+                  bg={ACCENT_COLORS[index % ACCENT_COLORS.length]}
                 />
               </Box>
 
               {/* Product Info */}
-              <VStack
-                align="flex-start"
-                spacing={4}
-                p={6}
-              >
-                <Box>
-                  <Heading
-                    as="h3"
-                    fontSize="xl"
-                    fontFamily="'Bebas Neue', 'Oswald', sans-serif"
-                    fontWeight="400"
-                    letterSpacing="0.05em"
-                    mb={1}
-                    color="brand.800"
-                  >
-                    {product.name.toUpperCase()}
-                  </Heading>
-                  <Text fontSize="sm" color="accent.leaf" fontWeight="600">
-                    {product.origin}
-                  </Text>
-                </Box>
-
-                <Text fontSize="sm" color="neutral.stone" lineHeight="1.6">
+              <VStack align="flex-start" spacing={2} p={5} pb={4}>
+                <Heading
+                  as="h3"
+                  fontSize="lg"
+                  fontFamily="'Bebas Neue', 'Oswald', sans-serif"
+                  fontWeight="400"
+                  letterSpacing="0.05em"
+                  color="neutral.charcoal"
+                >
+                  {product.name.toUpperCase()}
+                </Heading>
+                <Text fontSize="sm" color="brand.forest" fontWeight="600">
+                  {product.origin}
+                </Text>
+                <Text fontSize="sm" color="neutral.stone" lineHeight="1.6" minH="48px">
                   {product.description}
                 </Text>
-
-                {/* Specs Table */}
-                <VStack align="stretch" spacing={0} w="100%" pt={2}>
-                  {product.specs.map((spec, idx) => (
-                    <HStack
-                      key={spec.label}
-                      justify="space-between"
-                      py={2}
-                      borderTop={idx === 0 ? '1px solid' : 'none'}
-                      borderBottom="1px solid"
-                      borderColor="gray.200"
-                    >
-                      <Text fontSize="xs" color="neutral.stone" textTransform="uppercase" letterSpacing="0.05em">
-                        {spec.label}
-                      </Text>
-                      <Text fontSize="xs" fontWeight="600" textAlign="right" color="brand.800">
-                        {spec.value}
-                      </Text>
-                    </HStack>
-                  ))}
-                </VStack>
               </VStack>
+
+              {/* Product Attributes */}
+              <Box borderTop="1px solid" borderColor="neutral.border" mt="auto">
+                {product.attributes.map((attr, attrIndex) => (
+                  <Flex
+                    key={attrIndex}
+                    justify="space-between"
+                    align="center"
+                    px={5}
+                    py={3}
+                    borderBottom={attrIndex < product.attributes.length - 1 ? '1px solid' : 'none'}
+                    borderColor="neutral.border"
+                  >
+                    <Text fontSize="xs" color="neutral.stone" fontWeight="600" letterSpacing="0.08em">
+                      {attr.label}
+                    </Text>
+                    <Text fontSize="sm" color="neutral.charcoal" fontWeight="600">
+                      {attr.value}
+                    </Text>
+                  </Flex>
+                ))}
+              </Box>
+
+              {/* Learn More Link */}
+              <Link
+                as={RouterLink}
+                to={product.link}
+                display="flex"
+                alignItems="center"
+                gap={2}
+                px={5}
+                py={4}
+                fontSize="sm"
+                fontWeight="700"
+                color="neutral.charcoal"
+                textTransform="uppercase"
+                letterSpacing="0.08em"
+                _hover={{ color: 'brand.forest' }}
+                transition="color 0.2s"
+                borderTop="1px solid"
+                borderColor="neutral.border"
+              >
+                {t('products.learnMore')} <ArrowIcon />
+              </Link>
             </Box>
           ))}
         </SimpleGrid>
 
-        {/* Additional Products - simple list */}
-        <Box 
-          ref={moreProductsRef} 
-          className="reveal" 
-          pt={4}
-          p={6}
-          bg="brand.800"
-          color="white"
-        >
-          <Text 
-            fontSize="sm" 
-            lineHeight="1.8"
-            textAlign="center"
-          >
-            <Text 
-              as="span" 
-              fontWeight="600" 
-              color="accent.produce"
-              textTransform="uppercase"
-              letterSpacing="0.1em"
-            >
-              Also Available:
+        {/* Also Available Section */}
+        <Box textAlign="center">
+          <Text fontSize="sm" color="neutral.stone" mb={4}>
+            {t('products.alsoAvailable')}{' '}
+            <Text as="span" fontWeight="600" color="neutral.charcoal">
+              {alsoAvailable.join(', ')}
             </Text>
-            {' '}Limes · Lemons · Lychees · Rambutan · Star fruit · Mangosteen · Passion fruit · Frozen blueberries
           </Text>
+          <Button
+            as={RouterLink}
+            to="/products"
+            bg="brand.forest"
+            color="white"
+            _hover={{ bg: 'brand.forestLight' }}
+            size="md"
+          >
+            {t('products.viewAll')}
+          </Button>
         </Box>
       </Container>
     </Box>
