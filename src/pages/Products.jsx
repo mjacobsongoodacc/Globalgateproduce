@@ -22,13 +22,13 @@ import Footer, { Tagline } from '../components/Footer'
 import { useLanguage } from '../context/LanguageContext'
 import { useReveal, useStaggerReveal } from '../hooks/useReveal'
 
-import hassCrateImage from '../assets/images/Hassavocadoscrate.png'
+import hassCrateImage from '../assets/images/Hassavocadoscrate.jpeg'
 import dragonFruitCrateImage from '../assets/images/Dragonfruitcratered.png'
 import dragonFruitCrateYellowImage from '../assets/images/Dragonfruitcrateyellow.png'
-import lemonCrateImage from '../assets/images/Lemoncrate.png'
+import lemonCrateImage from '../assets/images/Lemoncrate.jpeg'
 import blueberryCrateImage from '../assets/images/Blueberrycrate.png'
 import frozenFruitCratesImage from '../assets/images/frozenfruitcrates.png'
-import pulpBoxImage from '../assets/images/Pulpbox.png'
+import pulpBoxImage from '../assets/images/Pulpbox.jpeg'
 
 // Zavaya accent colors for alternating borders
 const ZAVAYA_ACCENTS = ['brand.teal', 'brand.green', 'brand.orange', 'brand.yellow', 'brand.secondary']
