@@ -102,13 +102,13 @@ function Hero() {
               {t('hero.description')}
             </Text>
 
-            <HStack spacing={4} pt={4}>
+            <Flex wrap="wrap" gap={4} pt={4} justify={{ base: 'center', lg: 'flex-start' }}>
               <Button
                 bg="white"
                 color="brand.forest"
                 _hover={{ bg: 'neutral.cream' }}
                 size="lg"
-                px={8}
+                px={{ base: 6, md: 8 }}
                 as={RouterLink}
                 to="/#contact"
               >
@@ -117,7 +117,7 @@ function Hero() {
               <Button
                 variant="ghost"
                 size="lg"
-                px={8}
+                px={{ base: 6, md: 8 }}
                 color="white"
                 border="2px solid"
                 borderColor="whiteAlpha.400"
@@ -127,7 +127,7 @@ function Hero() {
               >
                 {t('hero.ctaSecondary')}
               </Button>
-            </HStack>
+            </Flex>
 
             {/* Credibility note */}
             <Text pt={4} color="whiteAlpha.600" fontSize="sm" letterSpacing="0.02em">

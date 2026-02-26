@@ -20,8 +20,8 @@ import { useLanguage } from '../context/LanguageContext'
 
 // Import capability images
 import farmImage from '../assets/images/farm-harvest.png'
-import packingImage from '../assets/images/Zavayapacking.png'
-import warehouseImage from '../assets/images/Zavayapacking2.png'
+import packingImage from '../assets/images/Gemini_Generated_Image_92m1et92m1et92m1.png'
+import warehouseImage from '../assets/images/Gemini_Generated_Image_1mmwib1mmwib1mmw.png'
 
 // Zavaya accent colors for numbered badges
 const BADGE_COLORS = ['brand.forest', 'brand.teal', 'brand.green']

@@ -28,7 +28,7 @@ Deployed on Netlify with automatic deployments on push to `main`.
 | Route | Page | Description |
 |-------|------|-------------|
 | `/` | Home | Hero, Export Scale (Zavaya), Capabilities, Product Focus, Quality, Contact |
-| `/products` | Products | Full product catalog — fresh produce, frozen fruits, fruit pulp |
+| `/products` | Products | Full product catalog — fresh produce, frozen fruits (incl. avocado cubes & halves), fruit pulp |
 | `/products/:slug` | Product Detail | Individual product page with specs and imagery |
 | `/certifications` | Certifications | USDA, GlobalGAP, SENASICA, HACCP, Organic, FSMA |
 
@@ -116,7 +116,7 @@ src/
 - **Bilingual** — English/Spanish toggle with localStorage persistence
 - **Zavaya branding** — full Zavaya color palette and logo integration
 - **Multi-page routing** — Home, Products, Product Detail, Certifications
-- **Product catalog** — fresh produce, frozen fruits, fruit pulp categories
+- **Product catalog** — fresh produce, frozen fruits (avocado cubes, halves, IQF), fruit pulp (avocado, mango, tropical)
 - **Responsive design** — optimized for all screen sizes
 - **Smooth animations** — Framer Motion transitions and scroll-reveal effects
 - **Accessible** — respects `prefers-reduced-motion`, keyboard-navigable
