@@ -27,7 +27,7 @@ Deployed on Netlify with automatic deployments on push to `main`.
 
 | Route | Page | Description |
 |-------|------|-------------|
-| `/` | Home | Hero, Export Scale (Zavaya), Capabilities, Product Focus, Quality, Contact |
+| `/` | Home | Hero, Export Scale (Zavaya), Avocado Carousel, Capabilities, Product Focus, Quality, Contact |
 | `/products` | Products | Full product catalog — fresh produce, frozen fruits (incl. avocado cubes & halves), fruit pulp |
 | `/products/:slug` | Product Detail | Individual product page with specs and imagery |
 | `/certifications` | Certifications | USDA, GlobalGAP, SENASICA, HACCP, Organic, FSMA |
@@ -89,6 +89,7 @@ src/
     Capabilities.jsx   # How it works — sourcing, packing, shipping
     ContactForm.jsx    # Contact form with team info
     ExportScale.jsx    # Zavaya brand showcase section
+    ZavayaCarousel.jsx # Auto-advancing image carousel of Zavaya avocado products
     Footer.jsx         # Footer with tagline and links
     Header.jsx         # Fixed navigation with language toggle (EN/ES)
     Hero.jsx           # Main landing hero section
@@ -120,6 +121,7 @@ src/
 - **Responsive design** — optimized for all screen sizes
 - **Smooth animations** — Framer Motion transitions and scroll-reveal effects
 - **Accessible** — respects `prefers-reduced-motion`, keyboard-navigable
+- **Zavaya carousel** — auto-advancing image carousel showcasing branded avocado products and packaging
 - **Contact form** — ready for backend integration (Formspree, etc.)
 - **Forest green header** — fixed navigation with white text and logo
 - **Bold typography** — Bebas Neue for headings, Work Sans for body

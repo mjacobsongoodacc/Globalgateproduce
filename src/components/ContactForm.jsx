@@ -130,8 +130,8 @@ function ContactForm() {
                 <VStack align="flex-start" spacing={1}>
                   <Text fontWeight="600" color="neutral.charcoal">Marie Leal</Text>
                   <Text fontSize="sm" color="accent.leaf">{t('contact.salesManager')}</Text>
-                  <Link href="mailto:marie@globalgateproduce.com" fontSize="sm" color="neutral.stone" _hover={{ color: 'brand.forest' }}>
-                    marie@globalgateproduce.com
+                  <Link href="mailto:sales@globalgateproduce.com" fontSize="sm" color="neutral.stone" _hover={{ color: 'brand.forest' }}>
+                    sales@globalgateproduce.com
                   </Link>
                 </VStack>
               </HStack>

@@ -119,6 +119,10 @@ const translations = {
     'contact.form.error': 'Something went wrong. Please try again.',
     'contact.form.emailDirect': 'Or email us directly at',
     
+    // Carousel section
+    'carousel.label': 'From Our Facility',
+    'carousel.title': 'Packed & Ready to Ship',
+
     // Footer
     'footer.description': 'Avocados, dragon fruit, and tropicals from Mexico. Women-owned, Rio Grande Valley–based.',
     'footer.quickLinks': 'Quick Links',
@@ -235,6 +239,10 @@ const translations = {
     'contact.form.error': 'Algo salió mal. Por favor intente de nuevo.',
     'contact.form.emailDirect': 'O envíenos un correo directamente a',
     
+    // Carousel section
+    'carousel.label': 'Desde Nuestra Planta',
+    'carousel.title': 'Empacado y Listo Para Enviar',
+
     // Footer
     'footer.description': 'Aguacates, pitahaya y tropicales de México. Empresa de mujeres, con sede en el Valle del Río Grande.',
     'footer.quickLinks': 'Enlaces Rápidos',
