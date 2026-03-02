@@ -11,24 +11,22 @@ import {
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../context/LanguageContext'
 
-import imgCratePortrait from '../assets/images/AvocadoCratePortrait.jpeg'
-import imgCratesReal from '../assets/images/avocado-crates-real.jpeg'
-import imgHassAvocado from '../assets/images/Hassavocado.jpeg'
-import imgHassAvocadoPng from '../assets/images/Hassavocado.png'
-import imgHassCrate from '../assets/images/Hassavocadoscrate.jpeg'
-import imgHassCratePng from '../assets/images/Hassavocadoscrate.png'
-import imgHomepageCrate from '../assets/images/Homepageavocadocrate.png'
-import imgHomepageAvocados from '../assets/images/Homepageavocados.png'
+import imgPackingLine from '../assets/images/Gemini_Generated_Image_swukbqswukbqswuk.png'
+import imgForkliftDock from '../assets/images/Gemini_Generated_Image_86id7r86id7r86id.png'
+import imgAutoStacking from '../assets/images/Gemini_Generated_Image_92m1et92m1et92m1.png'
+import imgTapingBox from '../assets/images/Gemini_Generated_Image_g5ex8ug5ex8ug5ex.png'
+import imgWarehousePallet from '../assets/images/Gemini_Generated_Image_1mmwib1mmwib1mmw.png'
+import imgTruckLoading from '../assets/images/Gemini_Generated_Image_1xvuxn1xvuxn1xvu.png'
+import imgOpenPallet from '../assets/images/Gemini_Generated_Image_ze8vw5ze8vw5ze8v.png'
 
 const slides = [
-  { src: imgHomepageAvocados, alt: 'Zavaya branded crate of fresh Hass avocados' },
-  { src: imgHomepageCrate, alt: 'Zavaya Tropical Mix avocado box' },
-  { src: imgHassCratePng, alt: 'Zavaya crate on pallets of branded avocado boxes' },
-  { src: imgHassCrate, alt: 'Zavaya wooden crate of Hass avocados in facility' },
-  { src: imgCratePortrait, alt: 'Zavaya branded avocado crate close-up' },
-  { src: imgCratesReal, alt: 'Fresh Hass avocados packed in export boxes' },
-  { src: imgHassAvocadoPng, alt: 'Ripe Hass avocados on marble' },
-  { src: imgHassAvocado, alt: 'Hass avocado halves on plate' },
+  { src: imgPackingLine, alt: 'Zavaya worker inspecting branded avocado boxes on packing line' },
+  { src: imgForkliftDock, alt: 'Forklift loading Zavaya pallets at shipping dock' },
+  { src: imgAutoStacking, alt: 'Automated stacking of Zavaya avocado boxes in facility' },
+  { src: imgTapingBox, alt: 'Worker taping Zavaya branded box for shipment' },
+  { src: imgWarehousePallet, alt: 'Zavaya avocado pallets staged in warehouse' },
+  { src: imgTruckLoading, alt: 'Zavaya avocado pallets being loaded into refrigerated truck' },
+  { src: imgOpenPallet, alt: 'Zavaya branded avocado boxes on pallet in warehouse' },
 ]
 
 const ChevronLeft = () => (
